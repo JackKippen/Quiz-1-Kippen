@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Student Portfolio{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {% block head %}{% endblock %}
+</head>
+<body style="display:flex;flex-direction:column;min-height:100vh;background:#eef2ff;">
+    <header style="padding:18px 18px 20px; border-bottom:2px solid #aac4ff; background:#eef2ff;">
+        <nav style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;">
+            <a href="{% url 'home' %}" style="font-weight:700;color:#0f2c6a;font-size:1.2rem;">My Portfolio</a>
+            <div>
+                <a href="{% url 'home' %}" style="margin-right:18px;color:#1b3e8a;font-size:1rem;">Home</a>
+                <a href="{% url 'about' %}" style="margin-right:18px;color:#1b3e8a;font-size:1rem;">About</a>
+                <a href="{% url 'projects' %}" style="margin-right:18px;color:#1b3e8a;font-size:1rem;">Projects</a>
+                <a href="{% url 'contact' %}" style="color:#1b3e8a;font-size:1rem;">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main style="max-width:1200px;margin:28px auto;padding:0 18px;flex:1;">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer style="max-width:980px;margin:0 auto 0 auto;padding:12px 18px;color:#1b3e8a;font-size:0.95rem;background:#eef2ff;border-top:1px solid #d6e0ff;">
+        <p>Simple student portfolio — built with Django templates</p>
+    </footer>
+</body>
+</html>

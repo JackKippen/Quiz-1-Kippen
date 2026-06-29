@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}About — Student Portfolio{% endblock %}
+{% block head %}
+<style>
+  body{font-family:'Poppins', Arial, sans-serif;color:#111;background:#eef2ff}
+  .content { max-width:760px }
+  h1{margin-bottom:6px;color:#0f2c6a}
+  p { color:#444 }
+  .two { display:flex; gap:20px; flex-wrap:wrap }
+  .box{border:1px solid #d6e0ff;padding:12px;border-radius:8px;background:#fafafa}
+  @media(max-width:720px){ .two{flex-direction:column} }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h1>About Me</h1>
+  <p>I am a college student studying Computer Engineering. I'm currently a 3rd year college student in Holy Angel University (HAU).</p>
+
+  <div class="two" style="margin-top:18px;">
+    <div class="box" style="flex:1">
+      <h2>Education</h2>
+      <p>3rd Year BSCpE Computer Engineering </p>
+    </div>
+    <div class="box" style="flex:1">
+      <h2>Interests</h2>
+      <p>Basketball, Playing Video Games, Spending time with family.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:18px">
+    <h2>Skills</h2>
+    <ul style="color:#444">
+      <li>HTML</li>
+      <li>Django</li>
+      <li>C++</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
