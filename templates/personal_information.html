@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Personal Information — Student Portfolio{% endblock %}
+{% block head %}
+<style>
+  body{font-family:'Poppins', Arial, sans-serif;color:#111;background:#eef2ff}
+  .card{border:1px solid #d6e0ff;padding:28px;border-radius:14px;background:#fafafa;max-width:920px;margin:16px auto 0;}
+  .title{color:#0f2c6a;font-size:2rem;margin-bottom:8px;}
+  .muted{color:#555;line-height:1.8;font-size:1.05rem;}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));margin-top:18px;}
+  .box{border:1px solid #d6e0ff;padding:14px;border-radius:10px;background:#fff;overflow-wrap:break-word;word-break:break-word;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1 class="title">Personal Information</h1>
+  {% if personal_info %}
+    <p class="muted">{{ personal_info.summary }}</p>
+    <div class="grid">
+      <div class="box"><strong>Full Name</strong><br>{{ personal_info.first_name }} {{ personal_info.middle_name }} {{ personal_info.last_name }}</div>
+      <div class="box"><strong>Contact Number</strong><br>{{ personal_info.contact_number }}</div>
+      <div class="box"><strong>Email</strong><br>{{ personal_info.email }}</div>
+      <div class="box"><strong>Address</strong><br>{{ personal_info.address }}</div>
+    </div>
+  {% else %}
+    <p class="muted">No personal information has been added yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -22,6 +22,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('projects/', views.projects, name='projects'),
+    path('projects/<int:pk>/', views.project_detail, name='project_detail'),
+    path('personal-information/', views.personal_information, name='personal_information'),
     path('contact/', views.contact, name='contact'),
     path('admin/', admin.site.urls),
 ]

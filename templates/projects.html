@@ -8,6 +8,7 @@
   .card-content{width:100%;}
   .card-title{color:#0f2c6a;font-size:1.2rem;margin:0;}
   .muted{color:#666;line-height:1.6}
+  .link-btn{display:inline-block;margin-top:8px;color:#1b3e8a;font-weight:600;text-decoration:none;}
   @media(max-width:720px){ .card{flex-direction:column;min-height:auto} }
 </style>
 {% endblock %}
@@ -16,27 +17,21 @@
 <h1>Projects</h1>
 <p class="muted">These are my accomplished projects.</p>
 <div class="grid" style="margin-top:18px">
-  <div class="card">
-    <div class="card-content">
-      <h3 class="card-title">Portfolio Website</h3>
-      <p class="muted">A simple portfolio built using Django templates.</p>
-      <p class="muted">Tech: HTML · Django</p>
+  {% for project in projects %}
+    <div class="card">
+      <div class="card-content">
+        <h3 class="card-title">{{ project.project_name }}</h3>
+        <a class="link-btn" href="{% url 'project_detail' project.pk %}">View details →</a>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <h3 class="card-title">Simple Calculator</h3>
-      <p class="muted">A console calculator program made in Dev C++ for integers and basic operations.</p>
-      <p class="muted">Tech: C++ (Dev C++)</p>
+  {% empty %}
+    <div class="card">
+      <div class="card-content">
+        <h3 class="card-title">No projects yet</h3>
+        <p class="muted">Add projects through Django admin to see them here.</p>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <h3 class="card-title">ATM Machine</h3>
-      <p class="muted">A basic ATM simulation written in Dev C++ with menu options for balance and withdrawal.</p>
-      <p class="muted">Tech: C++ (Dev C++)</p>
-    </div>
-  </div>
+  {% endfor %}
 </div>
 
 {% endblock %}

@@ -17,6 +17,7 @@
                 <a href="{% url 'home' %}" style="margin-right:18px;color:#1b3e8a;font-size:1rem;">Home</a>
                 <a href="{% url 'about' %}" style="margin-right:18px;color:#1b3e8a;font-size:1rem;">About</a>
                 <a href="{% url 'projects' %}" style="margin-right:18px;color:#1b3e8a;font-size:1rem;">Projects</a>
+                <a href="{% url 'personal_information' %}" style="margin-right:18px;color:#1b3e8a;font-size:1rem;">Profile</a>
                 <a href="{% url 'contact' %}" style="color:#1b3e8a;font-size:1rem;">Contact</a>
             </div>
         </nav>
@@ -26,7 +27,7 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer style="max-width:980px;margin:0 auto 0 auto;padding:12px 18px;color:#1b3e8a;font-size:0.95rem;background:#eef2ff;border-top:1px solid #d6e0ff;">
+    <footer style="max-width:980px;margin:0 auto 0 auto;padding:20px 18px;color:#1b3e8a;font-size:0.95rem;background:#eef2ff;border-top:1px solid #d6e0ff;">
         <p>Simple student portfolio — built with Django templates</p>
     </footer>
 </body>
