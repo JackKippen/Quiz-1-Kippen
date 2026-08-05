@@ -22,8 +22,12 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('projects/', views.projects, name='projects'),
+    path('projects/create/', views.project_create, name='project_create'),
     path('projects/<int:pk>/', views.project_detail, name='project_detail'),
     path('personal-information/', views.personal_information, name='personal_information'),
-    path('contact/', views.contact, name='contact'),
+    path('contact/', views.inquiry_create, name='contact'),
+    path('testimonies/', views.TestimonyListView.as_view(), name='testimony_list'),
+    path('testimonies/create/', views.testimony_create, name='testimony_create'),
+    path('testimonies/<int:pk>/', views.testimony_detail, name='testimony_detail'),
     path('admin/', admin.site.urls),
 ]

@@ -2,14 +2,14 @@
 {% block title %}Contact — Student Portfolio{% endblock %}
 {% block head %}
 <style>
-  body{font-family:'Poppins', Arial, sans-serif;color:#111;background:#eef2ff}
+  body{font-family:'Poppins', Arial, sans-serif;color:var(--text-main);background:var(--bg)}
   .contact-page { display:flex; justify-content:center; align-items:center; padding:24px 0; }
-  .card{border:1px solid #d6e0ff;padding:32px 28px;border-radius:14px;background:#fafafa;max-width:760px;width:100%;margin:18px auto;text-align:center;}
-  .contact-title{font-size:2rem;color:#0f2c6a;margin-bottom:8px;}
-  .contact-text{color:#444;font-size:1.05rem;line-height:1.8;max-width:720px;margin:0 auto 24px;}
-  .contact-link{color:#1b3e8a;text-decoration:none;font-weight:600}
+  .card{border:1px solid var(--borders);padding:32px 28px;border-radius:14px;background:var(--card);max-width:760px;width:100%;margin:18px auto;text-align:center;}
+  .contact-title{font-size:2rem;color:var(--primary);margin-bottom:8px;}
+  .contact-text{color:var(--text-secondary);font-size:1.05rem;line-height:1.8;max-width:720px;margin:0 auto 24px;}
+  .contact-link{color:var(--primary);text-decoration:none;font-weight:600}
   .contact-link:hover{text-decoration:underline}
-  .muted{color:#666}
+  .muted{color:var(--text-secondary)}
 </style>
 {% endblock %}
 
@@ -29,8 +29,8 @@
         <input id="email" type="email" name="email" placeholder="Your email" style="width:100%;padding:10px;border:1px solid #d6e0ff;border-radius:8px;margin-bottom:16px;font-family:'Poppins',Arial,sans-serif;" />
         <label for="message" style="display:block;margin-bottom:8px;font-weight:600;">Message</label>
         <textarea id="message" name="message" rows="5" placeholder="Your message" style="width:100%;padding:10px;border:1px solid #d6e0ff;border-radius:8px;margin-bottom:16px;font-family:'Poppins',Arial,sans-serif;"></textarea>
-        <button type="submit" style="display:inline-block;padding:10px 18px;border:1px solid #1b3e8a;border-radius:999px;background:#1b3e8a;color:#fff;font-weight:600;cursor:pointer;">Send Message</button>
-        <p style="margin-top:12px;color:#666;font-size:0.95rem;">Note: this form is for display only and does not send messages.</p>
+        <button type="submit" style="display:inline-block;padding:10px 18px;border:1px solid var(--button);border-radius:999px;background:var(--button);color:#fff;font-weight:600;cursor:pointer;">Send Message</button>
+        <p style="margin-top:12px;color:var(--text-secondary);font-size:0.95rem;">Note: this form is for display only and does not send messages.</p>
       </form>
     </div>
   </div>

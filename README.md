@@ -1,9 +1,10 @@
 # Django Portfolio Project
 
-This is a student portfolio website built with Django for Quiz 1 and Quiz 2. The project now uses database models for personal information and project entries, with function-based views and HTML templates.
+This is a college portfolio website built with Django. It is designed as a student assignment, with a clean blue-and-white layout, internal template styles, and beginner-friendly code.
 
 ## Features
 
+- Home page with a hero section, skills, featured projects, portfolio statistics, latest testimonial preview, and contact cards.
 - `Project` model with:
   - `project_name`
   - `description`
@@ -17,11 +18,23 @@ This is a student portfolio website built with Django for Quiz 1 and Quiz 2. The
   - `contact_number`
   - `email`
   - `address`
-- Project list view (`/projects/`) showing only project titles
-- Project detail view (`/projects/<id>/`) showing full project details
-- Personal information view (`/personal-information/`) returning profile details
-- Home, about, and contact pages now render backend data where appropriate
-- Django admin support for managing projects and personal information
+- `Testimony` model for visitor testimonials.
+- `Inquiry` model with a contact form that saves inquiries to the database.
+- Function-based views for home, about, projects, project detail, contact, personal information, testimony creation, and testimony detail.
+- One class-based list view for testimonials as required by the assignment.
+- Simple responsive layout using only HTML templates and internal CSS.
+- No external CSS files, no JavaScript, and no frontend frameworks.
+
+## Pages
+
+- `/` - Home page
+- `/about/` - About page
+- `/projects/` - Projects list
+- `/projects/<id>/` - Project detail
+- `/testimonies/` - Testimony list
+- `/testimonies/create/` - Leave a testimony
+- `/contact/` - Inquiry/contact form
+- `/personal-information/` - Profile details
 
 ## How to run the project
 
@@ -40,26 +53,26 @@ venv\Scripts\activate
 pip install django
 ```
 
-5. Create or update the database schema:
+5. Run migrations:
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. (Optional) Create a Django superuser to access the admin:
+6. (Optional) Create a Django superuser:
 
 ```bash
 python manage.py createsuperuser
 ```
 
-7. Run the Django development server:
+7. Start the development server:
 
 ```bash
 python manage.py runserver
 ```
 
-8. Open a browser and go to:
+8. Open your browser and visit:
 
 ```text
 http://127.0.0.1:8000/
@@ -68,10 +81,11 @@ http://127.0.0.1:8000/
 ## Admin
 
 - Admin site: `http://127.0.0.1:8000/admin/`
-- Manage `Project` and `PersonalInformation` from Django admin
+- Manage `Project`, `PersonalInformation`, `Testimony`, and `Inquiry` entries.
 
 ## Notes
 
-- The personal information and project content are stored in the database.
-- The project list page shows only titles, with detail pages for the full project data.
-- The contact form is still static and does not send messages.
+- The website uses Django templates with internal `<style>` tags only.
+- The contact form saves inquiries to the database via the `Inquiry` model.
+- Testimonies can be created by visitors and viewed in the testimony list.
+- The design is intentionally simple and student-friendly, not a premium professional template.

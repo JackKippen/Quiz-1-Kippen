@@ -3,33 +3,60 @@
 {% block head %}
 <style>
   /* Simple, beginner-friendly styles kept inside the HTML file */
-  body { background: #eef2ff; color:#111; font-family: 'Poppins', Arial, sans-serif; }
-  .hero { display:flex; gap:28px; align-items:flex-start; justify-content:flex-start; }
-  .hero-left { max-width:100%; width:100%; }
-  .eyebrow { color:#1b3e8a; text-transform:uppercase; font-size:15px; letter-spacing:1px; }
-  h1 { margin:10px 0 12px; font-size:46px; color:#0f2c6a; line-height:1.05; }
-  p.lead { color:#444; max-width:88ch; font-size:1.05rem; line-height:1.8; }
+  body { background:var(--bg); color:var(--text-main); font-family: 'Poppins', Arial, sans-serif; }
+  .hero { display:flex; gap:32px; align-items:center; justify-content:space-between; margin-top:8px; padding:24px 0; min-height:320px; }
+  .hero-left { max-width:64%; }
+  .hero-eyebrow { color:var(--primary); text-transform:uppercase; font-size:13px; letter-spacing:1px; margin-bottom:14px; }
+  .hero-title { margin:0 0 16px; font-size:44px; color:var(--primary); line-height:1.05; }
+  p.lead { color:var(--text-secondary); max-width:72ch; font-size:1rem; line-height:1.75; margin:0; }
+  .hero-cta { display:flex; gap:12px; margin-top:22px; }
+  .hero-badge { width:150px; height:150px; border-radius:999px; background:var(--card); border:1px solid var(--borders); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary); font-size:34px; }
   .section { margin-top:44px; }
-  .section h2 { font-size:1.5rem; color:#0f2c6a; margin-bottom:18px; }
-  .skill-list { padding-left:20px; color:#444; max-width:420px; margin:0; }
-  .skill-list li { margin-bottom:10px; }
-  .grid { display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); }
-  .project-grid { display:grid; gap:20px; grid-template-columns:repeat(3, minmax(300px,1fr)); width:100%; }
-  .card { border:1px solid #d6e0ff; padding:22px; border-radius:12px; background:#fafafa; min-height:160px; }
-  .card strong { display:block; font-size:1.05rem; margin-bottom:10px; color:#0f2c6a; }
-  a { color:#1b3e8a; font-weight:600; }
-  @media (max-width:1020px){ .project-grid { grid-template-columns:repeat(2, minmax(280px,1fr)); } }
-  @media (max-width:720px){ .hero{flex-direction:column;align-items:flex-start} .project-grid { grid-template-columns:1fr; } }
+  .section h2 { font-size:1.2rem; color:var(--primary); margin-bottom:12px; }
+
+  /* Skills as simple badges */
+  .skills { display:flex; gap:12px; flex-wrap:wrap; }
+  .skill { background:var(--card); border:1px solid var(--borders); padding:8px 12px; border-radius:999px; color:var(--text-main); font-weight:600; font-size:0.95rem; }
+
+  /* Stats */
+  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .stat { background:var(--card); border:1px solid var(--borders); padding:18px; border-radius:12px; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:130px; }
+  .stat strong{ display:block; font-size:2rem; color:var(--primary); margin-bottom:6px; }
+
+  .project-grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); width:100%; }
+  .project-card { border:1px solid var(--borders); outline:1px solid rgba(31,41,55,0.08); outline-offset:-1px; padding:20px; border-radius:14px; background:var(--card); min-height:160px; box-shadow:0 4px 10px rgba(0,0,0,0.05); transition:transform 120ms ease, border-color 120ms ease; }
+  .project-card:hover { transform:translateY(-2px); border-color:rgba(30,58,138,0.25); }
+  .project-card strong { display:block; font-size:1.08rem; margin-bottom:10px; color:var(--primary); }
+
+  .test-preview { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .test-card { border:1px solid var(--borders); padding:18px; border-radius:12px; background:var(--card); min-height:160px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
+  .test-card strong { font-weight:700; display:block; margin-bottom:10px; }
+
+  .contact-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .contact-card { border:1px solid var(--borders); padding:18px; border-radius:12px; background:var(--card); min-height:150px; display:flex; flex-direction:column; justify-content:flex-start; }
+
+  @media (max-width:920px){ .hero-left{max-width:100%} .hero{flex-direction:column} .test-preview{grid-template-columns:repeat(2,1fr)} .stats{grid-template-columns:repeat(3,1fr)} .contact-cards{grid-template-columns:1fr} }
+  @media (max-width:520px){ .test-preview{grid-template-columns:1fr} .stats{grid-template-columns:1fr} }
 </style>
 {% endblock %}
 
 {% block content %}
 <section class="hero">
-  <div class="hero-left">
-    <div class="eyebrow">Hello, I'm</div>
-    <h1>{% if personal_info %}{{ personal_info.first_name }} {{ personal_info.middle_name }} {{ personal_info.last_name }}{% else %}Your Name{% endif %}</h1>
-    <p class="lead">{% if personal_info %}{{ personal_info.summary }}{% else %}I am building this portfolio with Django and data from the backend.{% endif %}</p>
-    <p><a href="{% url 'projects' %}">View projects →</a></p>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <div class="hero-left">
+      <div class="eyebrow">Hello, I'm</div>
+      <h1 style="font-size:40px;">{% if personal_info %}{{ personal_info.first_name }} {{ personal_info.middle_name }} {{ personal_info.last_name }}{% else %}Jack John Kippen{% endif %}</h1>
+      <p class="lead">{% if personal_info %}{{ personal_info.summary }}{% else %}I am building this portfolio with Django and data from the backend.{% endif %}</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="{% url 'projects' %}">View Projects</a>
+        <a class="btn" style="border:1px solid var(--borders);color:var(--primary);background:transparent;" href="{% url 'contact' %}">Contact Me</a>
+      </div>
+    </div>
+
+    <div style="flex:0 0 110px;display:flex;align-items:center;justify-content:center;">
+      <!-- Simple circular initials as placeholder profile illustration -->
+      <div style="width:110px;height:110px;border-radius:999px;background:var(--card);border:1px solid var(--borders);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--primary);font-size:28px;">JK</div>
+    </div>
   </div>
 </section>
 
@@ -40,20 +67,26 @@
 
 <section class="section">
   <h2>Skills</h2>
-  <ul class="skill-list">
-    <li>HTML</li>
-    <li>Django</li>
-    <li>C++</li>
-  </ul>
+  <div class="skills">
+    {% for s in skills %}
+      <div class="skill">{{ s }}</div>
+    {% endfor %}
+  </div>
 </section>
 
 <section class="section">
   <h2>Projects</h2>
-  <div class="project-grid" style="margin-top:22px;">
-    {% for project in featured_projects %}
-      <div class="card">
-        <strong>{{ project.project_name }}</strong>
-        <p style="color:#444;margin:10px 0 0;">{{ project.description }}</p>
+  <div class="project-grid" style="margin-top:12px;">
+    {% for item in featured_projects %}
+      <div class="project-card">
+        <strong>{{ item.project.project_name }}</strong>
+        <p style="color:var(--text-secondary);margin:6px 0 10px;">{{ item.project.description|truncatechars:120 }}</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+          {% for tech in item.techs %}
+            <span style="background:var(--bg);border:1px solid var(--borders);padding:7px 10px;border-radius:999px;font-size:0.9rem;color:var(--text-main);">{{ tech }}</span>
+          {% endfor %}
+        </div>
+        <p style="margin-top:12px;"><a href="{% url 'project_detail' item.project.pk %}" style="color:var(--button);font-weight:600;text-decoration:none;">View Details →</a></p>
       </div>
     {% empty %}
       <div class="card">
@@ -65,8 +98,45 @@
 </section>
 
 <section class="section">
+  <h2>Portfolio Statistics</h2>
+  <div class="stats" style="margin-top:10px;">
+    <div class="stat"><strong>{{ projects_count }}</strong><span style="color:var(--text-secondary);">Projects</span></div>
+    <div class="stat"><strong>{{ skills_count }}</strong><span style="color:var(--text-secondary);">Skills</span></div>
+    <div class="stat"><strong>{{ years_learning }}y</strong><span style="color:var(--text-secondary);">Learning</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Latest Testimonials</h2>
+  <div class="test-preview" style="margin-top:10px;">
+    {% for t in latest_testimonies %}
+      <div class="test-card">
+        <strong style="font-size:0.95rem;color:var(--primary);">{{ t.full_name }}</strong>
+        <p style="color:var(--text-secondary);margin:6px 0 0;">{{ t.content|truncatechars:140 }}</p>
+      </div>
+    {% empty %}
+      <div class="test-card">No testimonies yet.</div>
+    {% endfor %}
+  </div>
+  <p style="margin-top:16px;"><a class="btn btn-primary" href="{% url 'testimony_list' %}">View All Testimonials</a></p>
+</section>
+
+<section class="section">
   <h2>Contact</h2>
-  <p style="color:#666;">{% if personal_info %}Email: {{ personal_info.email }} · Contact: {{ personal_info.contact_number }}{% else %}Email: your@email.com{% endif %}</p>
+  <div class="contact-cards" style="margin-top:10px;">
+    <div class="contact-card">
+      <strong style="color:var(--primary);">Email</strong>
+      <p style="color:var(--text-secondary);margin:10px 0 0;line-height:1.6;">{% if personal_info %}{{ personal_info.email }}{% else %}your@email.com{% endif %}</p>
+    </div>
+    <div class="contact-card">
+      <strong style="color:var(--primary);">Contact</strong>
+      <p style="color:var(--text-secondary);margin:10px 0 0;line-height:1.6;">{% if personal_info %}{{ personal_info.contact_number }}{% else %}000-000-0000{% endif %}</p>
+    </div>
+    <div class="contact-card">
+      <strong style="color:var(--primary);">Address</strong>
+      <p style="color:var(--text-secondary);margin:10px 0 0;line-height:1.6;">{% if personal_info %}{{ personal_info.address }}{% else %}Your City, Country{% endif %}</p>
+    </div>
+  </div>
 </section>
 
 {% endblock %}

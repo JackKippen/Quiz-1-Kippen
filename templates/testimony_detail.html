@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ testimony.full_name }} — Testimony{% endblock %}
+{% block head %}
+<style>
+  body{font-family:'Poppins', Arial, sans-serif;color:var(--text-main);background:var(--bg)}
+  .card{border:1px solid var(--borders);padding:28px;border-radius:14px;background:var(--card);max-width:760px;margin:18px auto}
+  .muted{color:var(--text-secondary)}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h2 style="color:var(--primary)">{{ testimony.full_name }}</h2>
+  <p class="muted">{{ testimony.content }}</p>
+  <p style="margin-top:12px;color:var(--text-secondary);font-size:0.95rem;">Posted on {{ testimony.created_at|date:'F j, Y' }}</p>
+</div>
+{% endblock %}

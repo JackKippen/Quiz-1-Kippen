@@ -2,12 +2,12 @@
 {% block title %}About — Student Portfolio{% endblock %}
 {% block head %}
 <style>
-  body{font-family:'Poppins', Arial, sans-serif;color:#111;background:#eef2ff}
+  body{font-family:'Poppins', Arial, sans-serif;color:var(--text-main);background:var(--bg)}
   .content { max-width:760px }
-  h1{margin-bottom:6px;color:#0f2c6a}
-  p { color:#444 }
+  h1{margin-bottom:6px;color:var(--primary)}
+  p { color:var(--text-secondary) }
   .two { display:flex; gap:20px; flex-wrap:wrap }
-  .box{border:1px solid #d6e0ff;padding:12px;border-radius:8px;background:#fafafa}
+  .box{border:1px solid var(--borders);padding:12px;border-radius:8px;background:var(--card)}
   @media(max-width:720px){ .two{flex-direction:column} }
 </style>
 {% endblock %}

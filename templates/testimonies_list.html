@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Testimonies — Student Portfolio{% endblock %}
+{% block head %}
+<style>
+  body{font-family:'Poppins', Arial, sans-serif;color:var(--text-main);background:var(--bg)}
+  .grid{display:grid;gap:18px}
+  .card{border:1px solid var(--borders);outline:1px solid rgba(31,41,55,0.08);outline-offset:-1px;padding:22px;border-radius:14px;background:var(--card);min-height:150px;box-shadow:0 4px 10px rgba(0,0,0,0.05);transition:transform 120ms ease,border-color 120ms ease;}
+  .card:hover{transform:translateY(-2px);border-color:rgba(30,58,138,0.25);}
+  .muted{color:var(--text-secondary)}
+  a.simple{color:var(--button);font-weight:600;text-decoration:none}
+  a.simple:hover{color:var(--button-hover)}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Testimonies</h1>
+<p class="muted">What people say about my work.</p>
+<div style="margin-top:18px" class="grid">
+  {% for t in testimonies %}
+    <div class="card">
+      <strong>{{ t.full_name }}</strong>
+      <p class="muted">{{ t.content|truncatechars:150 }}</p>
+      <p style="margin-top:8px"><a class="simple" href="{% url 'testimony_detail' t.pk %}">Read more →</a></p>
+    </div>
+  {% empty %}
+    <div class="card"><p class="muted">No testimonies yet.</p></div>
+  {% endfor %}
+</div>
+{% endblock %}

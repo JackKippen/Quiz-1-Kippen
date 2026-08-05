@@ -2,12 +2,12 @@
 {% block title %}Personal Information — Student Portfolio{% endblock %}
 {% block head %}
 <style>
-  body{font-family:'Poppins', Arial, sans-serif;color:#111;background:#eef2ff}
-  .card{border:1px solid #d6e0ff;padding:28px;border-radius:14px;background:#fafafa;max-width:920px;margin:16px auto 0;}
-  .title{color:#0f2c6a;font-size:2rem;margin-bottom:8px;}
-  .muted{color:#555;line-height:1.8;font-size:1.05rem;}
+  body{font-family:'Poppins', Arial, sans-serif;color:var(--text-main);background:var(--bg)}
+  .card{border:1px solid var(--borders);padding:28px;border-radius:14px;background:var(--card);max-width:920px;margin:16px auto 0;}
+  .title{color:var(--primary);font-size:2rem;margin-bottom:8px;}
+  .muted{color:var(--text-secondary);line-height:1.8;font-size:1.05rem;}
   .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));margin-top:18px;}
-  .box{border:1px solid #d6e0ff;padding:14px;border-radius:10px;background:#fff;overflow-wrap:break-word;word-break:break-word;}
+  .box{border:1px solid var(--borders);padding:14px;border-radius:10px;background:var(--card);overflow-wrap:break-word;word-break:break-word;}
 </style>
 {% endblock %}
 
