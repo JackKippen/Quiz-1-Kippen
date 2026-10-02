@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Tech Stack Dashboard{% endblock %}
+
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+  <h1 style="color:var(--primary);margin:0;">Tech Stack List</h1>
+  <a href="{% url 'dashboard_tech_stack_create' %}" style="display:inline-block;padding:10px 16px;border-radius:999px;background:var(--button);color:#fff;text-decoration:none;font-weight:600;">Create Tech Stack</a>
+</div>
+<div style="overflow-x:auto;border:1px solid var(--borders);background:var(--card);border-radius:12px;">
+  <table style="width:100%;border-collapse:collapse;min-width:540px;">
+    <thead>
+      <tr style="background:#eef4ff;">
+        <th style="padding:12px 16px;text-align:left;border-bottom:1px solid var(--borders);">Tech Stack Name</th>
+        <th style="padding:12px 16px;text-align:left;border-bottom:1px solid var(--borders);">Project It Was Used</th>
+        <th style="padding:12px 16px;text-align:left;border-bottom:1px solid var(--borders);">Date Added</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in tech_stacks %}
+      <tr>
+        <td style="padding:12px 16px;border-bottom:1px solid var(--borders);">{{ item.tech_stack.name }}</td>
+        <td style="padding:12px 16px;border-bottom:1px solid var(--borders);">{{ item.project_names|join:', ' }}</td>
+        <td style="padding:12px 16px;border-bottom:1px solid var(--borders);">{{ item.tech_stack.created_at|date:'Y-m-d' }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3" style="padding:16px;text-align:center;color:var(--text-secondary);">No tech stacks found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -27,6 +27,8 @@
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
           {% for tech in item.techs %}
             <span style="background:var(--bg);border:1px solid var(--borders);padding:6px 8px;border-radius:999px;font-size:0.85rem;color:var(--text-main);">{{ tech }}</span>
+          {% empty %}
+            <span style="background:var(--bg);border:1px solid var(--borders);padding:6px 8px;border-radius:999px;font-size:0.85rem;color:var(--text-main);">No tech stacks yet</span>
           {% endfor %}
         </div>
         <p style="margin-top:10px;text-align:right;"><a class="link-btn" href="{% url 'project_detail' item.project.pk %}">View details →</a></p>

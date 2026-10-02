@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Create Tech Stack{% endblock %}
+
+{% block content %}
+<div style="max-width:620px;margin:40px auto;padding:30px;border:1px solid var(--borders);background:var(--card);border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,0.05);">
+  <h1 style="color:var(--primary);margin-bottom:12px;">Create Tech Stack</h1>
+  <p style="color:var(--text-secondary);margin-bottom:18px;">Add a technology used in the project portfolio.</p>
+
+  {% if form.errors %}
+    <div style="padding:12px;border-radius:10px;background:#fff1f2;border:1px solid #fecdd3;color:#9f1239;margin-bottom:16px;">
+      {% for field in form %}
+        {% for error in field.errors %}
+          <div>{{ error }}</div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <div style="margin-bottom:18px;">
+      <label for="id_name" style="display:block;margin-bottom:8px;font-weight:600;">Tech Stack Name</label>
+      {{ form.name }}
+    </div>
+    <button type="submit" style="display:inline-block;padding:12px 20px;border-radius:999px;border:none;background:var(--button);color:#fff;font-weight:600;cursor:pointer;">Create Tech Stack</button>
+  </form>
+</div>
+{% endblock %}

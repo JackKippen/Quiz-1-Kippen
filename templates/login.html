@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Admin Sign In{% endblock %}
+
+{% block content %}
+<div style="max-width:520px;margin:40px auto;padding:30px;border:1px solid var(--borders);background:var(--card);border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,0.05);">
+  <h1 style="color:var(--primary);margin-bottom:12px;">Admin Sign In</h1>
+  <p style="color:var(--text-secondary);margin-bottom:20px;">Only superusers may sign in here.</p>
+
+  {% if form.errors %}
+    <div style="padding:12px;border-radius:10px;background:#fff1f2;border:1px solid #fecdd3;color:#9f1239;margin-bottom:16px;">
+      {% for field in form %}
+        {% for error in field.errors %}
+          <div>{{ error }}</div>
+        {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+        <div>{{ error }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <div style="margin-bottom:16px;">
+      <label for="id_username" style="display:block;margin-bottom:8px;font-weight:600;">Username</label>
+      {{ form.username }}
+    </div>
+    <div style="margin-bottom:20px;">
+      <label for="id_password" style="display:block;margin-bottom:8px;font-weight:600;">Password</label>
+      {{ form.password }}
+    </div>
+    <button type="submit" style="display:inline-block;padding:12px 20px;border-radius:999px;border:none;background:var(--button);color:#fff;font-weight:600;cursor:pointer;">Sign In</button>
+  </form>
+
+  <p style="margin-top:20px;color:var(--text-secondary);">
+    Need an account?
+    <a href="{% url 'register' %}" style="color:var(--button);font-weight:600;text-decoration:none;">Create one</a>
+  </p>
+</div>
+{% endblock %}

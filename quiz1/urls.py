@@ -1,21 +1,6 @@
-"""
-URL configuration for quiz1 project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
+
 from . import views
 
 urlpatterns = [
@@ -29,5 +14,13 @@ urlpatterns = [
     path('testimonies/', views.TestimonyListView.as_view(), name='testimony_list'),
     path('testimonies/create/', views.testimony_create, name='testimony_create'),
     path('testimonies/<int:pk>/', views.testimony_detail, name='testimony_detail'),
+    path('login/', views.AdminLoginView.as_view(), name='login'),
+    path('register/', views.register_view, name='register'),
+    path('logout/', views.logout_page, name='logout'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/projects/', views.project_dashboard_list, name='dashboard_projects'),
+    path('dashboard/projects/create/', views.project_create, name='dashboard_project_create'),
+    path('dashboard/tech-stacks/', views.tech_stack_dashboard_list, name='dashboard_tech_stacks'),
+    path('dashboard/tech-stacks/create/', views.tech_stack_create, name='dashboard_tech_stack_create'),
     path('admin/', admin.site.urls),
 ]

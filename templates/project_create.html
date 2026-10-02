@@ -3,9 +3,15 @@
 {% block head %}
 <style>
   body{font-family:'Poppins', Arial, sans-serif;color:var(--text-main);background:var(--bg)}
-  .card{border:1px solid var(--borders);padding:28px;border-radius:14px;background:var(--card);max-width:760px;margin:18px auto}
-  label{display:block;margin-bottom:6px;font-weight:600}
-  input, textarea{width:100%;padding:10px;border:1px solid var(--borders);border-radius:8px;margin-bottom:12px;font-family:'Poppins',Arial,sans-serif}
+  .card{border:1px solid var(--borders);padding:28px;border-radius:14px;background:var(--card);max-width:760px;margin:18px auto;box-shadow:0 4px 10px rgba(0,0,0,0.05)}
+  .field{margin-bottom:18px}
+  .field label{display:block;margin-bottom:8px;font-weight:600;color:var(--primary)}
+  .field input, .field textarea{width:100%;padding:12px 14px;border:1px solid var(--borders);border-radius:10px;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+  .field textarea{min-height:150px;resize:vertical}
+  .field .errorlist{margin:8px 0 0;padding-left:16px;color:#b91c1c;font-size:0.92rem}
+  .radio-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .radio-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--borders);border-radius:999px;background:var(--bg)}
+  .radio-item input{width:auto;margin:0}
   .btn{display:inline-block;padding:10px 18px;border:1px solid var(--button);border-radius:999px;background:var(--button);color:#fff;font-weight:600;cursor:pointer}
   .btn:hover{background:var(--button-hover)}
 </style>
@@ -13,10 +19,61 @@
 
 {% block content %}
 <div class="card">
-  <h1 style="color:var(--primary);margin-bottom:12px">Add New Project</h1>
+  <h1 style="color:var(--primary);margin-bottom:14px">Add New Project</h1>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+
+    {% if form.non_field_errors %}
+      <div class="field">
+        {% for error in form.non_field_errors %}
+          <div class="errorlist">{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="field">
+      {{ form.project_name.label_tag }}
+      {{ form.project_name }}
+      {% if form.project_name.errors %}
+        <ul class="errorlist">{% for error in form.project_name.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+      {% endif %}
+    </div>
+
+    <div class="field">
+      {{ form.description.label_tag }}
+      {{ form.description }}
+      {% if form.description.errors %}
+        <ul class="errorlist">{% for error in form.description.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+      {% endif %}
+    </div>
+
+    <div class="field">
+      {{ form.tech_stacks.label_tag }}
+      {% if form.tech_stacks.field.queryset.exists %}
+        <div class="radio-list">
+          {% for radio in form.tech_stacks %}
+            <label class="radio-item">{{ radio.tag }} {{ radio.choice_label }}</label>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="errorlist" style="margin-top:8px;">No tech stacks exist yet. Create a tech stack first.</div>
+        <p style="margin-top:10px;">
+          <a href="{% url 'dashboard_tech_stack_create' %}" style="color:var(--button);font-weight:600;text-decoration:none;">Create a tech stack</a>
+        </p>
+      {% endif %}
+      {% if form.tech_stacks.errors %}
+        <ul class="errorlist">{% for error in form.tech_stacks.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+      {% endif %}
+    </div>
+
+    <div class="field">
+      {{ form.link.label_tag }}
+      {{ form.link }}
+      {% if form.link.errors %}
+        <ul class="errorlist">{% for error in form.link.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+      {% endif %}
+    </div>
+
     <button class="btn" type="submit">Create Project</button>
   </form>
 </div>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Project Dashboard{% endblock %}
+
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+  <h1 style="color:var(--primary);margin:0;">Project List</h1>
+  <a href="{% url 'dashboard_project_create' %}" style="display:inline-block;padding:10px 16px;border-radius:999px;background:var(--button);color:#fff;text-decoration:none;font-weight:600;">Create Project</a>
+</div>
+<div style="overflow-x:auto;border:1px solid var(--borders);background:var(--card);border-radius:12px;">
+  <table style="width:100%;border-collapse:collapse;min-width:700px;">
+    <thead>
+      <tr style="background:#eef4ff;">
+        <th style="padding:12px 16px;text-align:left;border-bottom:1px solid var(--borders);">Project Name</th>
+        <th style="padding:12px 16px;text-align:left;border-bottom:1px solid var(--borders);">Description</th>
+        <th style="padding:12px 16px;text-align:left;border-bottom:1px solid var(--borders);">Tech Stack</th>
+        <th style="padding:12px 16px;text-align:left;border-bottom:1px solid var(--borders);">Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in projects %}
+      <tr>
+        <td style="padding:12px 16px;border-bottom:1px solid var(--borders);">{{ item.project.project_name }}</td>
+        <td style="padding:12px 16px;border-bottom:1px solid var(--borders);">{{ item.project.description|truncatechars:50 }}</td>
+        <td style="padding:12px 16px;border-bottom:1px solid var(--borders);">{{ item.techs|join:', ' }}</td>
+        <td style="padding:12px 16px;border-bottom:1px solid var(--borders);"><a href="{{ item.project.link }}" target="_blank" rel="noreferrer">Visit</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" style="padding:16px;text-align:center;color:var(--text-secondary);">No projects found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

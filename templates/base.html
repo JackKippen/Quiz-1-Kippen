@@ -36,12 +36,20 @@
     <header style="position:sticky;top:0;z-index:1000;background:var(--nav);border-bottom:1px solid var(--borders);">
         <nav style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 18px;min-height:72px;">
             <a href="{% url 'home' %}" style="font-weight:700;color:var(--primary);font-size:1.25rem;letter-spacing:0.02em;text-decoration:none;">My Portfolio</a>
-            <div style="display:flex;align-items:center;gap:16px;">
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
                 <a href="{% url 'home' %}" style="color:var(--primary);font-size:0.98rem;text-decoration:none;">Home</a>
                 <a href="{% url 'about' %}" style="color:var(--primary);font-size:0.98rem;text-decoration:none;">About</a>
                 <a href="{% url 'projects' %}" style="color:var(--primary);font-size:0.98rem;text-decoration:none;">Projects</a>
                 <a href="{% url 'testimony_list' %}" style="color:var(--primary);font-size:0.98rem;text-decoration:none;">Testimonies</a>
                 <a href="{% url 'contact' %}" style="color:var(--primary);font-size:0.98rem;text-decoration:none;">Contact</a>
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <a href="{% url 'dashboard' %}" style="color:var(--primary);font-size:0.98rem;text-decoration:none;">Dashboard</a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}" style="padding:8px 12px;border-radius:999px;background:var(--button);color:#fff;text-decoration:none;font-weight:600;font-size:0.92rem;">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" style="padding:8px 12px;border-radius:999px;background:var(--button);color:#fff;text-decoration:none;font-weight:600;font-size:0.92rem;">Login</a>
+                {% endif %}
                 <a href="{% url 'testimony_create' %}" style="padding:8px 12px;border-radius:999px;background:var(--button);color:#fff;text-decoration:none;font-weight:600;font-size:0.92rem;">Leave Testimony</a>
             </div>
         </nav>

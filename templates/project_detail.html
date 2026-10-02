@@ -8,6 +8,8 @@
   .title{color:var(--primary);font-size:2rem;margin:8px 0 12px;}
   .muted{color:var(--text-secondary);line-height:1.8;}
   .meta{margin-top:16px;padding-top:16px;border-top:1px solid var(--borders);}
+  .stack-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .stack-pill{background:var(--bg);border:1px solid var(--borders);padding:7px 10px;border-radius:999px;color:var(--text-main);font-size:0.9rem;}
 </style>
 {% endblock %}
 
@@ -17,8 +19,15 @@
   <h1 class="title">{{ project.project_name }}</h1>
   <p class="muted">{{ project.description }}</p>
   <div class="meta">
-    <p><strong>Tech Stack:</strong> {{ project.tech_stack }}</p>
-    <p><strong>Link:</strong> <a href="{{ project.link }}">{{ project.link }}</a></p>
+    <p><strong>Tech Stack:</strong></p>
+    <div class="stack-list">
+      {% for tech in project.tech_stacks.all %}
+        <span class="stack-pill">{{ tech.name }}</span>
+      {% empty %}
+        <span class="stack-pill">No tech stacks assigned</span>
+      {% endfor %}
+    </div>
+    <p style="margin-top:16px;"><strong>Link:</strong> <a href="{{ project.link }}">{{ project.link }}</a></p>
   </div>
 </div>
 {% endblock %}
